@@ -71,7 +71,7 @@ As a user I want to remove a TAG from a bookmark
 As a user I want to list my bookmarks sorted by rating (highest to smallest)
 ````
 ### Tests:
-- [ ] ensure that the browser sorts the bookmarks correctly by their rating  - descending
+- [x] ensure that the browser sorts the bookmarks correctly by their rating  - descending
 - [ ] ensure that the browser sorts the bookmarks correctly by their rating even when one increases its rating
 - [ ] ensure that the browser sorts the bookmarks correctly by their rating even when one decreases its rating
 - [ ] ensure that a newly created bookmark is at the bottom of the order when no other equal rating exist

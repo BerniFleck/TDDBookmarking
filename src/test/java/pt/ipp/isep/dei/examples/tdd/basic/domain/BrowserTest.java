@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -284,4 +286,39 @@ public class BrowserTest {
         }
     }
 
+
+    /**
+     * User Story:
+     * As a user I want to list my bookmarks sorted by rating (highest to smallest)
+     */
+    @Test
+    public void ensureBrowserSortsTheBookmarksCorrectlyByTheirRatingInDescendingOrder() throws MalformedURLException {
+        // Arrange
+        Bookmark google = new Bookmark("https://www.google.com");
+        Bookmark baeldung = new Bookmark("https://www.baeldung.com");
+        Bookmark facebook = new Bookmark("http://www.facebook.com");
+        Browser browser = new Browser();
+        List<Bookmark> bookmarks = browser.getBookmarks();
+        Bookmark firstBookmark;
+        Bookmark secondBookmark;
+        Bookmark thirdBookmark;
+
+        browser.add(google);
+        browser.add(baeldung);
+        browser.add(baeldung);
+        browser.add(facebook);
+        browser.add(facebook);
+        browser.add(facebook);
+
+        // Act
+        browser.sortBookmarksByRatingDescending();
+        firstBookmark = bookmarks.get(0);
+        secondBookmark = bookmarks.get(1);
+        thirdBookmark = bookmarks.get(2);
+
+        // Assert
+        assertThat(firstBookmark, is(facebook));
+        assertThat(secondBookmark, is(baeldung));
+        assertThat(thirdBookmark, is(google));
+    }
 }
