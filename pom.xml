@@ -13,7 +13,7 @@
         <maven.surefire.plugin>2.22.2</maven.surefire.plugin>
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
 
-        <java.version>1.8</java.version>
+        <java.version>1.11</java.version>
         <project.sourceEncoding>UTF-8</project.sourceEncoding>
 
         <project.build.sourceEncoding>${project.sourceEncoding}</project.build.sourceEncoding>
