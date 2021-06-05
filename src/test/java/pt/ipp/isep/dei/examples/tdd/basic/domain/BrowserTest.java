@@ -467,5 +467,3 @@ public class BrowserTest {
         assertThat(thirdBookmark, is(google));
     }
 }
-
-//         bookmarks.forEach(bookmark -> System.out.println(bookmark.getRating() + " " + bookmark.getUrl()));
