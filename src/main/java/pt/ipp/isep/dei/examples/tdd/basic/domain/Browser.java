@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import static java.util.Collections.unmodifiableList;
+import static java.util.Comparator.comparing;
 import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
@@ -74,8 +75,10 @@ public class Browser {
 
     public void sortBookmarksByRatingDescending() {
         Comparator byRating = comparingInt(Bookmark::getRating);
-        Comparator byRatingInDescendingOrder = byRating.reversed();
+        Comparator byRatingDescending = byRating.reversed();
+        Comparator byURLAlphabetically = comparing((Bookmark bookmark) -> bookmark.getUrl().toString());
+        Comparator byRatingDescAndByURLAlphabetically = byRatingDescending.thenComparing(byURLAlphabetically);
 
-        bookmarks.sort(byRatingInDescendingOrder);
+        bookmarks.sort(byRatingDescAndByURLAlphabetically);
     }
 }
