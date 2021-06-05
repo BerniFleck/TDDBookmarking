@@ -432,4 +432,40 @@ public class BrowserTest {
         assertThat(thirdBookmark, is(google));
     }
 
+    /**
+     * User Story:
+     * As a user I want to list my bookmarks sorted by rating (highest to smallest)
+     */
+    @Test
+    public void ensureBrowserSortsTheBookmarksCorrectlyByTheirRatingAndOnTheirURLOnEqualRatings() throws MalformedURLException {
+        // Arrange
+        Bookmark google = new Bookmark("https://www.google.com");
+        Bookmark baeldung = new Bookmark("https://www.baeldung.com");
+        Bookmark facebook = new Bookmark("https://www.facebook.com");
+        Browser browser = new Browser();
+        List<Bookmark> bookmarks = browser.getBookmarks();
+        Bookmark firstBookmark;
+        Bookmark secondBookmark;
+        Bookmark thirdBookmark;
+
+        browser.add(google);
+        browser.add(google);
+        browser.add(baeldung);
+        browser.add(baeldung);
+        browser.add(facebook);
+        browser.add(facebook);
+
+        // Act
+        browser.sortBookmarksByRatingDescending();
+        firstBookmark = bookmarks.get(0);
+        secondBookmark = bookmarks.get(1);
+        thirdBookmark = bookmarks.get(2);
+
+        // Assert
+        assertThat(firstBookmark, is(baeldung));
+        assertThat(secondBookmark, is(facebook));
+        assertThat(thirdBookmark, is(google));
+    }
 }
+
+//         bookmarks.forEach(bookmark -> System.out.println(bookmark.getRating() + " " + bookmark.getUrl()));
