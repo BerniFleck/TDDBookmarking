@@ -74,11 +74,16 @@ public class Browser {
     }
 
     public void sortBookmarksByRatingDescending() {
-        Comparator byRating = comparingInt(Bookmark::getRating);
-        Comparator byRatingDescending = byRating.reversed();
-        Comparator byURLAlphabetically = comparing((Bookmark bookmark) -> bookmark.getUrl().toString());
-        Comparator byRatingDescAndByURLAlphabetically = byRatingDescending.thenComparing(byURLAlphabetically);
+        bookmarks.sort(byRatingDescending().thenComparing(byURLAlphabetically()));
+    }
 
-        bookmarks.sort(byRatingDescAndByURLAlphabetically);
+    private Comparator byRatingDescending() {
+        Comparator comparatorOfRatings = comparingInt(Bookmark::getRating);
+        return comparatorOfRatings.reversed();
+    }
+
+    private Comparator byURLAlphabetically() {
+        Comparator<Bookmark> comparatorOfURL = comparing((Bookmark bookmark) -> bookmark.getUrl().toString());
+        return comparatorOfURL;
     }
 }
